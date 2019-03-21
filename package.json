@@ -1,5 +1,5 @@
 {
-  "name": "bar-chart",
+  "name": "bar-charts",
   "version": "1.0.0",
   "description": "Bar charts as wide as the console",
   "main": "index.js",

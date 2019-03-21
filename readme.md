@@ -1,7 +1,7 @@
 ## Examples
 ### Chart
 ```js
-const barChart = require('bar-chart');
+const barChart = require('bar-charts');
 
 console.log(barChart([
   {label: 'smiles per day', count: 143},
@@ -18,7 +18,7 @@ smiles per day | █████████████████████
 ```
 ### Progress bar
 ```js
-const barChart = require('bar-chart');
+const barChart = require('bar-charts');
 const sequentialPromiseAll = require('sequential-promise-all');
 const timeout = (ms) => new Promise((res) => setTimeout(res, ms));
 
