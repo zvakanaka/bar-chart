@@ -1,0 +1,30 @@
+{
+  "name": "bar-chart",
+  "version": "1.0.0",
+  "description": "Bar charts as wide as the console",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node test/test-display.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zvakanaka/bar-chart.git"
+  },
+  "keywords": [
+    "bar",
+    "chart",
+    "console",
+    "width",
+    "percent",
+    "percentage"
+  ],
+  "author": "Adam Quinton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zvakanaka/bar-chart/issues"
+  },
+  "homepage": "https://github.com/zvakanaka/bar-chart#readme"
+}
