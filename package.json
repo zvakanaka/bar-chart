@@ -1,6 +1,6 @@
 {
   "name": "bar-charts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bar charts as wide as the console",
   "main": "index.js",
   "directories": {
