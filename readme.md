@@ -19,7 +19,7 @@ smiles per day | ███████████████████      
 ```js
 const barChart = require('bar-charts');
 const sequentialPromiseAll = require('sequential-promise-all');
-const timeout = (ms) => new Promise((res) => setTimeout(res, ms));
+const timeout = ms => new Promise(res => setTimeout(() => res(ms), ms));
 
 (async () => {
   const arr = Array.from(Array(100), (d, i) => i); // fill array with n values 0..100
