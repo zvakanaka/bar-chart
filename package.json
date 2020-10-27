@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node test/test-display.js"
+    "test": "node test/test-display.js",
+    "lint": "npx eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,13 @@
   "bugs": {
     "url": "https://github.com/zvakanaka/bar-chart/issues"
   },
-  "homepage": "https://github.com/zvakanaka/bar-chart#readme"
+  "homepage": "https://github.com/zvakanaka/bar-chart#readme",
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^15.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.2"
+  }
 }
