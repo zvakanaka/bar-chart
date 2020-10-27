@@ -11,35 +11,35 @@ console.log(barChart([
 // test progress bar
 (async () => {
   const n = 100; // number of times to call promise
-  await sequentialPromiseAll(
-    timeout, // function that returns a promise (will be called n times after previous one resolves)
-    [1000], // arguments array provided to promise (timeout)
-    n, // number of times to call promise
-    ( // callback - invoked after each promise resolution
-      argsHandle, // modify this in the callback to change the arguments at the next invocation
-      previousResponse, // what is resolved from promise (timeout)
-      i) => {
+  await sequentialPromiseAll(timeout, [1000], n, (argsHandle, previousResponse, i) => {
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
       const count = (i + 1) / n * 100;
-      const outputStr = barChart([{ label: `${i + 1}/${n}`, count }], { percentages: true });
-      process.stdout.write(outputStr); // print the bar
+      const outputBar = barChart([{ label: `${i + 1}/${n}`, count }], { percentages: true });
+      process.stdout.write(outputBar);
       argsHandle[0] = Math.max(previousResponse - 40, 10); // speed up over time
     });
 })();
 
-function sequentialPromiseAll(func, args, num, updateCb) {
+/**
+ * 
+ * @param {*} func function that returns a promise (will be called n times after previous one resolves)
+ * @param {*} args arguments array provided to promise (timeout)
+ * @param {*} num number of times to call promise
+ * @param {*} callback invoked after each promise resolution that accept
+ */
+function sequentialPromiseAll(func, args, num, callback) {
   return new Promise((resolve, reject) => {
     const responses = [];
     const arr = Array.from(Array(num), (d, i) => i);
-    arr.reduce((p, item, i) => {
-      return p.then((lastResponse) => {
-        if (lastResponse) {
-          responses.push(lastResponse);
-          if (updateCb) updateCb(args, lastResponse, i);
-        }
-        return func(...args);
-      });
+    arr.reduce(async (p, item, i) => {
+      const lastResponse = await p;
+      if (lastResponse) {
+        responses.push(lastResponse);
+        if (callback)
+          callback(args, lastResponse, i);
+      }
+      return func(...args);
     }, Promise.resolve()).then((lastResponse) => {
       responses.push(lastResponse);
       resolve(responses);
