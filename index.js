@@ -10,15 +10,23 @@ const percentagize = (val) => `${Math.floor(val)}%`.padStart(4, ' ');
 function barChart(objectArray, options = {percentages: false}) {
   let labelMax; // max string length for label - will be updated
   let countMax; // max string length for count - will be updated
+
   if (options.percentages) objectArray.push({label: '', count: 100}); // percentage adjuster - will be removed later
   // value mapping
-  const obj = objectArray.reduce((acc, cur) => {
-    if (!acc[cur.label]) acc[cur.label] = cur.count;
-    else acc[cur.label] += cur.count;
-    const countLength =  options.percentages ? percentagize(cur.count).length : commatize(cur.count).length;
-    if (labelMax === undefined || cur.label.length > labelMax) labelMax = cur.label.length;
-    if (countMax === undefined || countLength > countMax) countMax = countLength;
-    return acc;
+  const obj = objectArray.reduce((previous, current) => {
+    if (!previous[current.label]) 
+      previous[current.label] = current.count;
+    else 
+      previous[current.label] += current.count;
+
+    const countLength = options.percentages ? percentagize(current.count).length : commatize(current.count).length;
+
+    if (labelMax === undefined || current.label.length > labelMax) 
+      labelMax = current.label.length;
+    if (countMax === undefined || countLength > countMax) 
+      countMax = countLength;
+
+    return previous;
   }, {});
 
   const [consoleWidth, consoleHeight] = process.stdout.isTTY ? process.stdout.getWindowSize() : [100, 100];
